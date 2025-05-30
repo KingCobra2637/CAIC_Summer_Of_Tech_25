@@ -88,7 +88,18 @@ def linearRegression(X: np.array, Y: np.array, lr: float, lambda_: float):
     Returns:
     - weights: Learned model parameters
     """
-    pass  # Your implementation here
+    n,d = X.shape
+    # Getting number of data and dimensions in n and d.
+    b0 = 0; betas = np.zeros(d)
+    # Initialising bias term and coefficients.
+    for i in range(1000):
+    # Running enough times (for appropriate learning rate).
+        imp = Y - b0 * np.ones(n) - X @ betas
+        # Evaluating 1d array used for increment/decrement.
+        b0 += 2 * lr * np.sum(imp) # Is the formula for
+        betas += 2 * lr * (X.T @ imp) / n - lr * lambda_ * np.sign(betas)
+    weights = np.concatenate((np.array([b0]), betas))
+    return weights
 ```
 > ✅ **Keep your code clean and well-commented.**  
 Submission Instructions will be shared via tha WhatsApp Group.
