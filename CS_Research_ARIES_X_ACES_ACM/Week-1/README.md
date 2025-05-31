@@ -96,9 +96,11 @@ def linearRegression(X: np.array, Y: np.array, lr: float, lambda_: float):
     # Running enough times (for appropriate learning rate).
         imp = Y - b0 * np.ones(n) - X @ betas
         # Evaluating 1d array used for increment/decrement.
-        b0 += 2 * lr * np.sum(imp) # Is the formula for
+        b0 += 2 * lr * np.sum(imp) # Is the formula for change in bias term.
         betas += 2 * lr * (X.T @ imp) / n - lr * lambda_ * np.sign(betas)
+        # Formula for change matrix in coefficients.
     weights = np.concatenate((np.array([b0]), betas))
+    # Create array for learned parameters.
     return weights
 ```
 > ✅ **Keep your code clean and well-commented.**  
